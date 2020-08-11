@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<meta charset="UTF-8">
+</head>
+<body style="background-color:powderblue;">
+<div align="center" class="table-responsive">
+<h1>BAYİLİK ÖN BAŞVURU FORMU</h1>
+<br>
+<form action="#" id="form" th:action="@{/kaydet}" th:object="${bilgiler}" method="post">
+<div class="form-row">
+    <div class="form-group col">
+      <label for="isim"><b>İSİM SOYİSİM:</b></label>
+      <input type="text" class="form-control" th:field="*{isim_soyadi}" id="isim" required>
+    </div>
+    <div class="form-group col">
+      <label for="tc"><b>TC KİMLİK:</b></label>
+      <input type="text" class="form-control" id="tc"  th:field="*{tc_kimlik}" minlength="11" required>
+    </div>
+  </div>
+<div class="form-group">
+    <label for="adres"><b>ADRES:</b></label>
+    <input type="text" class="form-control" id="adres"  th:field="*{adres}"  placeholder="Adres"required>
+ </div>
+<div class="form-row">
+<div class="form group col">
+<label for="telefon"><b>TELEFON:</b></label>
+<input type="text" class="form-control" th:field="*{telefon}"  id="telefon" minlength="11" required>
+</div>
+<div class="form group col">
+<label for="telefon"><b>E-POSTA:</b></label>
+<input type="email" class="form-control" th:field="*{e_posta}" id="eposta" required>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="dtarihi"><b>DOĞUM TARİHİ:</b></label>
+<input type="date" class="form-control" th:field="*{dogumtarihi}" id="dtarihi" required>
+</div>
+<div class="form-group col-md-6">
+<label for="tercih"><b>PERAKENDE TİCARETİ İLE UĞRAŞTINIZ MI?</b></label>
+<select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="tercih" th:field="*{perakende_cevap}">
+<option value="evet">Evet</option>
+<option value="hayır">Hayır</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="tercih"><b>LOKUMCU BABAYI TERCİH ETMENİZİN SEBEBİ NEDİR?</b></label>
+<textarea class="form-control" th:field="*{tercih_sebebi}" id="tercih" required></textarea>
+</div>
+<div class="form-group">
+<label for="yertercih"><b>HANGİ İL/İLÇE/SEMT İÇİN LOKUMCU BABA İŞLETMECİLİĞİ DÜŞÜNÜYORSUNUZ?</b></label>
+<input type="text" class="form-control" th:field="*{yer_tercihi}" id="yertercih" required>
+</div>
+<div class="form-group">
+<label for="yatirim"><b>YATIRIM MİKTARINIZ NEDİR?</b></label>
+<input type="text" class="form-control" th:field="*{yatirim_miktari}" id="yatirim" required>
+</div>
+<div class="form-group">
+<label for="ektext"><b>EKLEMEK İSTEDİKLERİNİZ:</b></label>
+<textarea class="form-control"  th:field="*{ek_text}" id="ektext" required></textarea>
+</div>
+<button type="submit" onclick="fun()" class="btn btn-outline-info btn-lg" >Kaydet</button>
+</form>
+<script>
+//bazı girdilerin rakam olduğunu kontrol ediyorum
+function fun(){
+	var telefon=document.forms["form"]["telefon"].value;
+	var tc=document.forms["form"]["tc"].value;
+	var yatirim=document.forms["form"]["yatirim"].value;
+	if(!/^[0-9]+$/.test(telefon)||!/^[0-9]+$/.test(tc)||!/^[0-9]+$/.test(yatirim)){
+	    alert("Lütfen Girdilerinizde Rakam Kullanın!")
+	  }
+}
+</script>
+</div>
+</body>
+</html>
